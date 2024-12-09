@@ -21,11 +21,10 @@ final class SearchLocationViewModel: SearchViewModel {
             Task { await updateLocations(with: searchLocationInput) }
         }
     }
-    @MainActor
     @Published var locationsList: [(LocationModel, CityWeatherModel)] = []
-    var errorToPresent: Error?
     private let service: WeatherInfoService
-        
+    var errorToPresent: Error?
+
     init(service: WeatherInfoService) {
         self.service = service
     }

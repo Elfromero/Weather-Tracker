@@ -11,10 +11,6 @@ struct WeatherIconView: View {
     let path: String
     
     var body: some View {
-        iconView
-    }
-    
-    private var iconView: some View {
         do {
             let iconURL = try IconURLBuilder(path: path)
                 .size(.large)

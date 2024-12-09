@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import Alamofire
-import SwiftUICore
 
 protocol WeatherInfoService {
     func getWeather(with locationID: String) async throws -> CityWeatherModel

@@ -19,8 +19,10 @@ protocol MainViewModel: ObservableObject {
 
 final class MainScreenViewModel<SVM>: MainViewModel where SVM: SearchViewModel {
     typealias SearchVM = SVM
+    
     @Published var selectedCityWeather: CityWeatherModel?
     @Published var errorToPresent: Error?
+    
     var searchViewModel: SearchVM
     private let service: WeatherInfoService
     
