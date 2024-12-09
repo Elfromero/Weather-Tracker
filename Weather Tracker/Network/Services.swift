@@ -50,7 +50,7 @@ actor WeatherInfoRemoteService: WeatherInfoService {
             return try await withThrowingTaskGroup(of: (LocationModel, CityWeatherModel).self) { group in
                 for location in locations {
                     group.addTask {
-                        (location, try await self.getWeather(with: location.id))
+                        (location, try await self.getWeather(with: "\(location.id)"))
                     }
                 }
                 var result: [LocationModel: CityWeatherModel] = [:]

@@ -8,10 +8,8 @@
 import Foundation
 
 struct LocationModel: Decodable, Identifiable, Hashable {
-    let id: String
+    let id: Int
     let name: String
     let region: String
     let country: String
-    let lat: Float
-    let lon: Float
 }

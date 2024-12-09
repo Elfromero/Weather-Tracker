@@ -9,16 +9,15 @@ import SwiftUI
 
 @main
 struct Weather_TrackerApp: App {
-    private let service = WeatherInfoRemoteService()
-
+    let service = WeatherInfoRemoteService()
+    
     var body: some Scene {
-        WindowGroup {
+        let searchLocationViewModel = SearchLocationViewModel(service: service)
+        let mainScreenViewModel = MainScreenViewModel(service: service, searchViewModel: searchLocationViewModel)
+        return WindowGroup {
             MainView(
-                viewModel: MainScreenViewModel(service: service),
-                searchViewModel: SearchLocationViewModel(service: service)
+                viewModel: mainScreenViewModel
             )
         }
     }
-    
-    
 }

@@ -34,34 +34,50 @@
             endingLineNumber = "17"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D133313D-286D-42D1-A242-2F998571E2C4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weather Tracker/Network/Services.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "getWeather(with:)"
+            landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "528380BE-BFB1-4AB4-8AEA-55AF381DE379 - d1c99cbcbf150715"
+                  uuid = "D133313D-286D-42D1-A242-2F998571E2C4 - 9a351f0a787e02b3"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;Weather_Tracker.CityWeatherModel&gt;, Swift.String, &lt;&lt;opaque return type of SwiftUI.View.listRowSeparator(_: SwiftUI.Visibility, edges: SwiftUI.VerticalEdge.Set) -&gt; some&gt;&gt;.0&gt; in Weather_Tracker.LocationsListView.body.getter : some"
+                  symbolName = "(3) suspend resume partial function for Weather_Tracker.WeatherInfoRemoteService.getWeather(with: Swift.String) async throws -&gt; Weather_Tracker.CityWeatherModel"
                   moduleName = "Weather Tracker.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/romanradchuk/Projects/Weather%20Tracker/Weather%20Tracker/Views/LocationsListView.swift"
+                  urlString = "file:///Users/romanradchuk/Projects/Weather%20Tracker/Weather%20Tracker/Network/Services.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16">
+                  startingLineNumber = "38"
+                  endingLineNumber = "38">
                </Location>
                <Location
-                  uuid = "528380BE-BFB1-4AB4-8AEA-55AF381DE379 - 6ad949ac763ada08"
+                  uuid = "D133313D-286D-42D1-A242-2F998571E2C4 - b3ee1b2dc258c6b5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Weather_Tracker.CityWeatherModel) -&gt; &lt;&lt;opaque return type of SwiftUI.View.listRowSeparator(_: SwiftUI.Visibility, edges: SwiftUI.VerticalEdge.Set) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Array&lt;Weather_Tracker.CityWeatherModel&gt;, Swift.String, &lt;&lt;opaque return type of SwiftUI.View.listRowSeparator(_: SwiftUI.Visibility, edges: SwiftUI.VerticalEdge.Set) -&gt; some&gt;&gt;.0&gt; in Weather_Tracker.LocationsListView.body.getter : some"
+                  symbolName = "(4) suspend resume partial function for Weather_Tracker.WeatherInfoRemoteService.getWeather(with: Swift.String) async throws -&gt; Weather_Tracker.CityWeatherModel"
                   moduleName = "Weather Tracker.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/romanradchuk/Projects/Weather%20Tracker/Weather%20Tracker/Views/LocationsListView.swift"
+                  urlString = "file:///Users/romanradchuk/Projects/Weather%20Tracker/Weather%20Tracker/Network/Services.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17">
+                  startingLineNumber = "38"
+                  endingLineNumber = "38">
                </Location>
             </Locations>
          </BreakpointContent>

@@ -7,18 +7,26 @@
 
 import SwiftUI
 
-struct SearchLocationListView: View {
-    let locations: [(LocationModel, CityWeatherModel)]
-    @Binding var selcetedCity: (LocationModel, CityWeatherModel)?
+struct SearchLocationListView<VM>: View where VM: SearchViewModel {
+    @StateObject private var viewModel: VM
+    let onSelectAction: (LocationModel, CityWeatherModel) -> Void
+    
+    init(
+        viewModel: @autoclosure @escaping () -> VM,
+        onSelectAction: @escaping (LocationModel, CityWeatherModel) -> Void
+    ) {
+        self._viewModel = StateObject(wrappedValue: viewModel())
+        self.onSelectAction = onSelectAction
+    }
     
     var body: some View {
         List {
-            ForEach(locations, id: \.0) { location, weather in
+            ForEach(viewModel.locationsList, id: \.0) { location, weather in
                 CityWeatherThumbnailView(model: weather)
-                    .onTapGesture {
-                        selcetedCity = location
-                    }
                     .listRowSeparator(.hidden)
+                    .onTapGesture {
+                        onSelectAction(location, weather)
+                    }
             }
         }
         
@@ -28,5 +36,6 @@ struct SearchLocationListView: View {
 }
 
 #Preview {
-    SearchLocationListView(locations: [], selcetedCity: .constant(nil))
+    let service = WeatherInfoRemoteService()
+    SearchLocationListView(viewModel: SearchLocationViewModel(service: service), onSelectAction: {_,_ in })
 }

@@ -12,7 +12,7 @@ protocol SearchViewModel: ObservableObject {
     var locationsList: [(LocationModel, CityWeatherModel)] { get }
 }
 
-final class SearchLocationViewModel: SearchViewModel {
+final class SearchLocationViewModel: SearchViewModel {    
     @Published var searchLocationInput: String = "" {
         didSet {
             guard searchLocationInput.count >= 3 else { return }
@@ -20,7 +20,7 @@ final class SearchLocationViewModel: SearchViewModel {
         }
     }
     @MainActor
-    @Published var locationsList = [LocationModel: CityWeatherModel?]()
+    @Published var locationsList: [(LocationModel, CityWeatherModel)] = []
     
     private let service: WeatherInfoService
         
@@ -31,27 +31,12 @@ final class SearchLocationViewModel: SearchViewModel {
     private func updateLocations(with string: String) async {
         do {
             let locations = try await service.searchLocations(with: string)
+            Task { @MainActor in
+                locationsList = locations
+            }
         } catch {
             //TODO: Handle errors
             return
         }
-    }
-    
-    func fetchWeather(with locationID: String) async -> CityWeatherModel {
-        return try! await service.getWeather(with: locationID)
-    }
-}
-
-extension Sequence {
-    func asyncMap<T>(
-        _ transform: (Element) async throws -> T
-    ) async rethrows -> [T] {
-        var values = [T]()
-
-        for element in self {
-            try await values.append(transform(element))
-        }
-
-        return values
     }
 }

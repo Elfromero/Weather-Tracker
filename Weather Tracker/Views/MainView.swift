@@ -7,19 +7,21 @@
 
 import SwiftUI
 
-struct MainView<VM, SVM>: View where VM: MainViewModel, SVM: SearchViewModel{
+struct MainView<VM>: View where VM: MainViewModel {
     @StateObject private var viewModel: VM
-    @StateObject private var searchViewModel: SVM
     @State private var isSearchFieldFocused: Bool = false
     
-    init(viewModel: @autoclosure @escaping () -> VM, searchViewModel: @autoclosure @escaping () -> SVM) {
+    init(viewModel: @autoclosure @escaping () -> VM) {
         self._viewModel = StateObject(wrappedValue: viewModel())
-        self._searchViewModel = StateObject(wrappedValue: searchViewModel())
-      }
+    }
+    
     var body: some View {
         NavigationStack {
             if isSearchFieldFocused {
-                SearchLocationListView(locations: searchViewModel.locationsList, selcetedCity: $viewModel.selectedCityWeather)
+                SearchLocationListView(viewModel: viewModel.searchViewModel) {
+                    viewModel.select($0, with: $1)
+                    isSearchFieldFocused = false
+                }
             } else if let selectedCityWeather = viewModel.selectedCityWeather {
                 CityWeatherView(model: selectedCityWeather)
             } else {
@@ -28,7 +30,7 @@ struct MainView<VM, SVM>: View where VM: MainViewModel, SVM: SearchViewModel{
                     .padding()
             }
         }
-        .searchable(text: $searchViewModel.searchLocationInput, isPresented: $isSearchFieldFocused)
+        .searchable(text: $viewModel.searchViewModel.searchLocationInput, isPresented: $isSearchFieldFocused)
         .font(Font.custom("Poppins-Regular", size: 15))
         .foregroundStyle(Color.primaryShadow)
         .onTapGesture { isSearchFieldFocused = false }
@@ -41,7 +43,9 @@ struct MainView<VM, SVM>: View where VM: MainViewModel, SVM: SearchViewModel{
 #Preview {
     let service = WeatherInfoRemoteService()
     MainView(
-        viewModel: MainScreenViewModel(service: service),
-        searchViewModel: SearchLocationViewModel(service: service)
+        viewModel: MainScreenViewModel(
+            service: service,
+            searchViewModel: SearchLocationViewModel(service: service)
+            )
     )
 }

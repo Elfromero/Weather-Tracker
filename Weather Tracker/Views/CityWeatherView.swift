@@ -13,49 +13,19 @@ struct CityWeatherView: View {
         VStack {
             WeatherIconView(path: model.conditionIconUrl)
             .frame(width: 123, height: 123)
-            .padding(.bottom, 27)
+            .padding(.top, 80)
             
             Text(model.name)
                 .font(Font.custom("Poppins-SemiBold", size: 30))
                 .foregroundStyle(Color.primaryBlack)
-                .padding(.bottom, 16)
             Text("\(Int(model.temperature))°")
                 .font(Font.custom("Poppins-Medium", size: 70))
                 .foregroundStyle(Color.primaryBlack)
             
             CityWeatherDetailsView(model: model)
-                .padding(.top, 36)
+                .background(.red)
         }
-    }
-}
-
-struct CityWeatherDetailsView: View {
-    let model: CityWeatherModel
-    var body: some View {
-        HStack {
-            ForEach(contentInfo, id: \.0) { title, value in
-                VStack {
-                    Text(title)
-                        .font(Font.custom("Poppins-SemiBold", size: 12))
-                        .foregroundStyle(Color.primaryShadow)
-                    Text(value)
-                        .font(Font.custom("Poppins-Medium", size: 15))
-                        .foregroundStyle(Color.primaryInactive)
-                }
-                .frame(maxWidth: .infinity)
-            }
-        }
-        .frame(width: 274, height: 75)
-        .background(Color.secondaryBackground)
-        .cornerRadius(16)
-    }
-    
-    private var contentInfo: [(String, String)] {
-        [
-            ("Humidity", "\(model.humidity)%" ),
-            ("UV", "\(Int(model.uvIndex))" ),
-            ("Feels Like", "\(Int(model.feelsLikeTemperature))°" )
-        ]
+        Spacer()
     }
 }
 

@@ -8,35 +8,37 @@
 import Foundation
 
 protocol MainViewModel: ObservableObject {
-    var selectedCityWeather: CityWeatherModel? { get set }
+    associatedtype SearchVM: SearchViewModel
+    var selectedCityWeather: CityWeatherModel? { get }
+    var searchViewModel: SearchVM { get set }
     func fetchStoredLocationWeather() async
+    func select(_ location: LocationModel, with weatherModel: CityWeatherModel)
 }
 
-final class MainScreenViewModel: MainViewModel {
+final class MainScreenViewModel<SVM>: MainViewModel where SVM: SearchViewModel {
+    typealias SearchVM = SVM
     @MainActor
-    @Published var selectedCityWeather: (LocationModel, CityWeatherModel)? {
-        didSet {
-            UserDefaults.standard.set(selectedCityWeather, forKey: "selected_location")
-        }
-    }
-    
+    @Published var selectedCityWeather: CityWeatherModel?
+    var searchViewModel: SearchVM
     private let service: WeatherInfoService
     
-    init(service: WeatherInfoService) {
+    init(service: WeatherInfoService, searchViewModel: SVM) {
         self.service = service
-        UserDefaults.standard.set("London", forKey: "selected_location")
+        self.searchViewModel = searchViewModel
     }
     
     func fetchStoredLocationWeather() async {
-        guard let storedSelectedLocationID = UserDefaults.standard.string(forKey: "selected_location") else { return }
+        guard let storedSelectedLocationID = UserDefaults.standard.string(forKey: "selected_location_id") else { return }
         let weather = try! await service.getWeather(with: storedSelectedLocationID)
         await MainActor.run {
             selectedCityWeather = weather
         }
     }
     
-//    @MainActor
-//    func select(_ cityWeather: CityWeatherModel) async {
-//        selectedCityWeather = cityWeather
-//    }
+    func select(_ location: LocationModel, with weatherModel: CityWeatherModel) {
+        Task { @MainActor in
+            selectedCityWeather = weatherModel
+            UserDefaults.standard.set(location.id, forKey: "selected_location_id")
+        }
+    }
 }
