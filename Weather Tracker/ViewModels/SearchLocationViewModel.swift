@@ -10,7 +10,8 @@ import Foundation
 protocol SearchViewModel: ObservableObject {
     var searchLocationInput: String { get set }
     var locationsList: [(LocationModel, CityWeatherModel)] { get }
-    var errorToPresent: Error? { get }
+    var errorToPresent: Error? { get set }
+    func closeErrorMessage()
 }
 
 final class SearchLocationViewModel: SearchViewModel {    
@@ -38,5 +39,9 @@ final class SearchLocationViewModel: SearchViewModel {
             locationsList = []
             errorToPresent = error
         }
+    }
+    
+    func closeErrorMessage() {
+        errorToPresent = nil
     }
 }

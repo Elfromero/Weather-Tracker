@@ -30,6 +30,11 @@ struct MainView<VM>: View where VM: MainViewModel {
                     .padding()
             }
         }
+        .alert(viewModel.errorToPresent?.localizedDescription ?? "Error. Contact with technical support", isPresented: $viewModel.isShowingError) {
+            Button("OK", role: .cancel) {
+                viewModel.closeErrorMessage()
+            }
+        }
         .searchable(text: $viewModel.searchViewModel.searchLocationInput, isPresented: $isSearchFieldFocused)
         .font(Font.custom("Poppins-Regular", size: 15))
         .foregroundStyle(Color.primaryShadow)

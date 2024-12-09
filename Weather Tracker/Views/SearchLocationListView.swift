@@ -29,9 +29,21 @@ struct SearchLocationListView<VM>: View where VM: SearchViewModel {
                     }
             }
         }
-        
         .frame( maxWidth: .infinity)
         .listStyle(GroupedListStyle())
+        .alert(viewModel.errorToPresent?.localizedDescription ?? "Error. Contact with technical support", isPresented: isShowingError) {
+            Button("OK", role: .cancel) {
+                viewModel.closeErrorMessage()
+            }
+        }
+    }
+    
+    var isShowingError: Binding<Bool> {
+        Binding {
+            viewModel.errorToPresent != nil
+        } set: { _ in
+            viewModel.errorToPresent = nil
+        }
     }
 }
 

@@ -34,7 +34,7 @@ actor NetworkManager: GlobalActor {
                 switch(response.result) {
                 case let .success(data):
                     continuation.resume(returning: data)
-                case let .failure(_):
+                case .failure(_):
                     continuation.resume(throwing: NetworkError.connectionIssue)
                 }
             }

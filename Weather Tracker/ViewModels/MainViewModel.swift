@@ -11,7 +11,9 @@ protocol MainViewModel: ObservableObject {
     associatedtype SearchVM: SearchViewModel
     var selectedCityWeather: CityWeatherModel? { get }
     var searchViewModel: SearchVM { get set }
-    var errorToPresent: Error? { get }
+    var errorToPresent: Error? { get set }
+    var isShowingError: Bool { get set }
+    func closeErrorMessage()
     func fetchStoredLocationWeather() async
     func select(_ location: LocationModel, with weatherModel: CityWeatherModel)
 }
@@ -46,5 +48,13 @@ final class MainScreenViewModel<SVM>: MainViewModel where SVM: SearchViewModel {
             selectedCityWeather = weatherModel
             UserDefaults.standard.set(location.id, forKey: "selected_location_id")
         }
+    }
+    
+    var isShowingError: Bool {
+        errorToPresent != nil
+    }
+    
+    func closeErrorMessage() {
+        errorToPresent = nil
     }
 }
