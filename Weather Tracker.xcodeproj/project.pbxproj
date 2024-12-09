@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		21E407DF8E4CE55A6F4D11AE /* Pods_Weather_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC4358F24CE1D1A3DF9AF9 /* Pods_Weather_Tracker.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		1DAC4358F24CE1D1A3DF9AF9 /* Pods_Weather_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FC006382273864F62E84763 /* Pods-Weather Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather Tracker.debug.xcconfig"; path = "Target Support Files/Pods-Weather Tracker/Pods-Weather Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 		BDC135A72D04AC2D00DA4F51 /* Weather Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEA6949AD9A44C70641D717D /* Pods-Weather Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather Tracker.release.xcconfig"; path = "Target Support Files/Pods-Weather Tracker/Pods-Weather Tracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -23,17 +30,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21E407DF8E4CE55A6F4D11AE /* Pods_Weather_Tracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A50D723407040DA103CAF10 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DAC4358F24CE1D1A3DF9AF9 /* Pods_Weather_Tracker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		36CB74E8ECACEE819D98D312 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5FC006382273864F62E84763 /* Pods-Weather Tracker.debug.xcconfig */,
+				FEA6949AD9A44C70641D717D /* Pods-Weather Tracker.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		BDC1359E2D04AC2D00DA4F51 = {
 			isa = PBXGroup;
 			children = (
 				BDC135A92D04AC2D00DA4F51 /* Weather Tracker */,
 				BDC135A82D04AC2D00DA4F51 /* Products */,
+				36CB74E8ECACEE819D98D312 /* Pods */,
+				1A50D723407040DA103CAF10 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,9 +79,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BDC135B62D04AC2E00DA4F51 /* Build configuration list for PBXNativeTarget "Weather Tracker" */;
 			buildPhases = (
+				D2BECC277287289BA5988C5F /* [CP] Check Pods Manifest.lock */,
 				BDC135A32D04AC2D00DA4F51 /* Sources */,
 				BDC135A42D04AC2D00DA4F51 /* Frameworks */,
 				BDC135A52D04AC2D00DA4F51 /* Resources */,
+				FBF7CA52B45FCB7353258AAF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -64,8 +93,6 @@
 				BDC135A92D04AC2D00DA4F51 /* Weather Tracker */,
 			);
 			name = "Weather Tracker";
-			packageProductDependencies = (
-			);
 			productName = "Weather Tracker";
 			productReference = BDC135A72D04AC2D00DA4F51 /* Weather Tracker.app */;
 			productType = "com.apple.product-type.application";
@@ -113,6 +140,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D2BECC277287289BA5988C5F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Weather Tracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FBF7CA52B45FCB7353258AAF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Weather Tracker/Pods-Weather Tracker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Weather Tracker/Pods-Weather Tracker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Weather Tracker/Pods-Weather Tracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BDC135A32D04AC2D00DA4F51 /* Sources */ = {
@@ -241,6 +310,7 @@
 		};
 		BDC135B72D04AC2E00DA4F51 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FC006382273864F62E84763 /* Pods-Weather Tracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -249,6 +319,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Weather Tracker/Resources\"";
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Weather-Tracker-Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -273,11 +344,13 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USE_RECURSIVE_SCRIPT_INPUTS_IN_SCRIPT_PHASES = YES;
 			};
 			name = Debug;
 		};
 		BDC135B82D04AC2E00DA4F51 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEA6949AD9A44C70641D717D /* Pods-Weather Tracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -286,6 +359,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Weather Tracker/Resources\"";
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Weather-Tracker-Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -310,6 +384,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USE_RECURSIVE_SCRIPT_INPUTS_IN_SCRIPT_PHASES = YES;
 			};
 			name = Release;
 		};

@@ -11,13 +11,7 @@ struct CityWeatherView: View {
     let model: CityWeatherModel
     var body: some View {
         VStack {
-            AsyncImage(url: model.conditionIconUrl)
-            { image in
-                image.resizable()
-            } placeholder: {
-                Image("loading_placeholder")
-                .resizable()
-            }
+            WeatherIconView(path: model.conditionIconUrl)
             .frame(width: 123, height: 123)
             .padding(.bottom, 27)
             
@@ -25,7 +19,7 @@ struct CityWeatherView: View {
                 .font(Font.custom("Poppins-SemiBold", size: 30))
                 .foregroundStyle(Color.primaryBlack)
                 .padding(.bottom, 16)
-            Text("\(model.temperature)°")
+            Text("\(Int(model.temperature))°")
                 .font(Font.custom("Poppins-Medium", size: 70))
                 .foregroundStyle(Color.primaryBlack)
             
@@ -58,21 +52,15 @@ struct CityWeatherDetailsView: View {
     
     private var contentInfo: [(String, String)] {
         [
-            ("Humidity", "\(model.humidity*100)%" ),
-            ("UV", "\(model.uvIndex)" ),
-            ("Feels Like", "\(model.feelsLikeTemperature)°" )
+            ("Humidity", "\(model.humidity)%" ),
+            ("UV", "\(Int(model.uvIndex))" ),
+            ("Feels Like", "\(Int(model.feelsLikeTemperature))°" )
         ]
     }
 }
 
 #Preview {
-    let mock = CityWeatherModel(
-        name: "Chicago",
-        temperature: 40,
-        conditionIconUrl: URL(string: "https://hws.dev/paul.jpg")! ,
-        humidity: 0.3,
-        uvIndex: 0.2,
-        feelsLikeTemperature: 30
-    )
+    let mockData = #"{"location":{"name":"London"},"current":{"temp_c":6.1,"temp_f":43.0,"condition":{"icon":"//cdn.weatherapi.com/weather/64x64/night/296.png"},"humidity":87,"feelslike_c":1.2,"feelslike_f":34.1,"uv":0.0}}"#.data(using: .utf8)
+    let mock = try! JSONDecoder().decode(CityWeatherModel.self, from: mockData!)
     CityWeatherView(model: mock)
 }
