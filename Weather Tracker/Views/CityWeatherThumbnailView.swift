@@ -11,7 +11,7 @@ struct CityWeatherThumbnailView: View {
     let model: CityWeatherModel
     var body: some View {
         HStack {
-            VStack(alignment: .center, spacing: 13) {
+            VStack(alignment: .leading) {
                 Text(model.name)
                     .font(Font.custom("Poppins-SemiBold", size: 20))
                     .foregroundStyle(Color.primaryBlack)
@@ -20,6 +20,8 @@ struct CityWeatherThumbnailView: View {
                     .foregroundStyle(Color.primaryBlack)
                     .frame(height: 45)
             }
+            .frame(maxWidth: 150)
+            .scaledToFit()
             Spacer()
             WeatherIconView(path: model.conditionIconUrl)
             .frame(width: 83, height: 83)

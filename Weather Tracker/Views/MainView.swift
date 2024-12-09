@@ -30,7 +30,7 @@ struct MainView<VM>: View where VM: MainViewModel {
                     .padding()
             }
         }
-        .alert(viewModel.errorToPresent?.localizedDescription ?? "Error. Contact with technical support", isPresented: $viewModel.isShowingError) {
+        .alert(viewModel.errorToPresent?.localizedDescription ?? "Error. Contact with technical support", isPresented: .constant(viewModel.errorToPresent != nil)) {
             Button("OK", role: .cancel) {
                 viewModel.closeErrorMessage()
             }
