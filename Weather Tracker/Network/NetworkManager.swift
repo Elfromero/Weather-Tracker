@@ -34,35 +34,23 @@ actor NetworkManager: GlobalActor {
                 switch(response.result) {
                 case let .success(data):
                     continuation.resume(returning: data)
-                case let .failure(error):
-                    continuation.resume(throwing: self.handleError(error: error))
+                case let .failure(_):
+                    continuation.resume(throwing: NetworkError.connectionIssue)
                 }
             }
         }
     }
+}
 
-    private func handleError(error: Error) -> Error {
-        if let underlyingError = (error as? AFError)?.underlyingError {
-            let nserror = underlyingError as NSError
-            let code = nserror.code
-            if code == NSURLErrorNotConnectedToInternet ||
-                code == NSURLErrorTimedOut ||
-                code == NSURLErrorInternationalRoamingOff ||
-                code == NSURLErrorDataNotAllowed ||
-                code == NSURLErrorCannotFindHost ||
-                code == NSURLErrorCannotConnectToHost ||
-                code == NSURLErrorNetworkConnectionLost
-            {
-                var userInfo = nserror.userInfo
-                userInfo[NSLocalizedDescriptionKey] = "Unable to connect to the server"
-                let currentError = NSError(
-                    domain: nserror.domain,
-                    code: code,
-                    userInfo: userInfo
-                )
-                return currentError
-            }
+enum NetworkError: Error {
+    case connectionIssue
+}
+
+extension NetworkError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .connectionIssue:
+            return "Unable to connect to the server"
         }
-        return error
     }
 }

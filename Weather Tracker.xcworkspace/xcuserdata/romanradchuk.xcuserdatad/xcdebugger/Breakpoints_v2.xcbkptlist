@@ -36,51 +36,5 @@
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D133313D-286D-42D1-A242-2F998571E2C4"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Weather Tracker/Network/Services.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "getWeather(with:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D133313D-286D-42D1-A242-2F998571E2C4 - 9a351f0a787e02b3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for Weather_Tracker.WeatherInfoRemoteService.getWeather(with: Swift.String) async throws -&gt; Weather_Tracker.CityWeatherModel"
-                  moduleName = "Weather Tracker.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/romanradchuk/Projects/Weather%20Tracker/Weather%20Tracker/Network/Services.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "38"
-                  endingLineNumber = "38">
-               </Location>
-               <Location
-                  uuid = "D133313D-286D-42D1-A242-2F998571E2C4 - b3ee1b2dc258c6b5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for Weather_Tracker.WeatherInfoRemoteService.getWeather(with: Swift.String) async throws -&gt; Weather_Tracker.CityWeatherModel"
-                  moduleName = "Weather Tracker.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/romanradchuk/Projects/Weather%20Tracker/Weather%20Tracker/Network/Services.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "38"
-                  endingLineNumber = "38">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

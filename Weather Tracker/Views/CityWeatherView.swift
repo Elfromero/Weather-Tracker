@@ -23,7 +23,6 @@ struct CityWeatherView: View {
                 .foregroundStyle(Color.primaryBlack)
             
             CityWeatherDetailsView(model: model)
-                .background(.red)
         }
         Spacer()
     }

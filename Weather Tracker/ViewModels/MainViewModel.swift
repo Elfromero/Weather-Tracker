@@ -11,6 +11,7 @@ protocol MainViewModel: ObservableObject {
     associatedtype SearchVM: SearchViewModel
     var selectedCityWeather: CityWeatherModel? { get }
     var searchViewModel: SearchVM { get set }
+    var errorToPresent: Error? { get }
     func fetchStoredLocationWeather() async
     func select(_ location: LocationModel, with weatherModel: CityWeatherModel)
 }
@@ -20,6 +21,7 @@ final class MainScreenViewModel<SVM>: MainViewModel where SVM: SearchViewModel {
     @MainActor
     @Published var selectedCityWeather: CityWeatherModel?
     var searchViewModel: SearchVM
+    var errorToPresent: Error?
     private let service: WeatherInfoService
     
     init(service: WeatherInfoService, searchViewModel: SVM) {
@@ -29,9 +31,13 @@ final class MainScreenViewModel<SVM>: MainViewModel where SVM: SearchViewModel {
     
     func fetchStoredLocationWeather() async {
         guard let storedSelectedLocationID = UserDefaults.standard.string(forKey: "selected_location_id") else { return }
-        let weather = try! await service.getWeather(with: storedSelectedLocationID)
-        await MainActor.run {
-            selectedCityWeather = weather
+        do {
+            let weather = try await service.getWeather(with: storedSelectedLocationID)
+            await MainActor.run {
+                selectedCityWeather = weather
+            }
+        } catch {
+            errorToPresent = error
         }
     }
     

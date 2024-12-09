@@ -19,8 +19,9 @@ struct WeatherIconView: View {
             let iconURL = try IconURLBuilder(path: path)
                 .size(.large)
                 .build()
-            return AnyView(AsyncImage(url: iconURL) { $0.resizable() }
-            placeholder: {
+            return AnyView(AsyncImage(url: iconURL) {
+                $0.resizable()
+            } placeholder: {
                 defaultIcon
             })
         } catch {

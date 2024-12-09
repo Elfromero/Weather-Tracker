@@ -34,9 +34,10 @@ actor WeatherInfoRemoteService: WeatherInfoService {
             )
             return try JSONDecoder().decode(CityWeatherModel.self, from: data)
         } catch let error {
-            //TODO: Map errors.
-            print(error.localizedDescription)
-            throw error
+            if error is NetworkError {
+                throw error
+            }
+            throw ServicesError.somethingWentWrong
         }
     }
     
@@ -63,9 +64,23 @@ actor WeatherInfoRemoteService: WeatherInfoService {
                 return locations.map() { ($0, result[$0]!) }
             }
         } catch let error {
-            //TODO: Map errors.
-            print(error.localizedDescription)
-            throw error
+            if error is NetworkError {
+                throw error
+            }
+            throw ServicesError.somethingWentWrong
+        }
+    }
+}
+
+enum ServicesError: Error {
+    case somethingWentWrong
+}
+
+extension ServicesError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .somethingWentWrong:
+            return "Ups, something went wrong"
         }
     }
 }

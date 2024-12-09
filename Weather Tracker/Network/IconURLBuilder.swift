@@ -31,8 +31,8 @@ class IconURLBuilder {
         return self
     }
     
-    func build() -> URL {
-        return URL(string: "https:" + path.replacing(Self.sizeRegex, with: size.rawValue))!
+    func build() -> URL? {
+        return URL(string: "https:" + path.replacing(Self.sizeRegex, with: size.rawValue))
     }
 }
 
